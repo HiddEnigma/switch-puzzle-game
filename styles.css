@@ -11,11 +11,12 @@ body
 /***************** Classes *****************/
 .title-container
 {
-
+  margin: 1% auto;
 }
 .game-container
 {
-  
+  margin: 5% auto;
+  padding: 10px;
 }
 /***************** IDs *****************/
 
