@@ -1,4 +1,27 @@
+/***************** Selectors *****************/
+
 body
 {
-  background-color: #616161; 
+  background-color: #616161;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/***************** Classes *****************/
+.title-container
+{
+
+}
+.game-container
+{
+  
+}
+/***************** IDs *****************/
+
+#canvas
+{
+  background-color: #9E9E9E;
+  height: 1024;
+  width: 768;
 }
