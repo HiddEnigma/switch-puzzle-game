@@ -1,8 +1,8 @@
 var switchBoard =
 [
-  "x", "o", "x",
-  "o", "c", "o",
-  "x", "x", "x"
+  ["x", "o", "x"],
+  ["o", "c", "o"],
+  ["x", "x", "x"]
 ];
 
 function drawBoard ()
@@ -27,7 +27,12 @@ function addEventListenerOnClick ()
 
       //Using shortened if statements, checks the click against the board for the assigned values. If X -> O, if O -> X. If C, do nothing.
       //For the switchBoard itself
-      switchBoard[fieldX][fieldY] = switchBoard[fieldX][fieldY] != "c" ? == "x" ? "o" : "x";
+      if (switchBoard[fieldX][fieldY] != "c")
+      {
+        console.log("Clicked on: " + switchBoard[fieldX][fieldY]);
+        switchBoard[fieldX][fieldY] = switchBoard[fieldX][fieldY] == "x" ? "o" : "x";
+      }
+
 
       // //extended if version
       // if (switchBoard[fieldX][fieldY] != "c")
@@ -45,25 +50,56 @@ function addEventListenerOnClick ()
       //For the switch above the one clicked.
       if ((fieldY - 1) >= 0)
       {
-        switchBoard[fieldX][fieldY - 1] = switchBoard[fieldX][fieldY - 1] != "c" ? == "x" ? "o" : "x";
+        if (switchBoard[fieldX][fieldY - 1] != "c")
+        {
+          console.log("Clicked on: " + switchBoard[fieldX][fieldY - 1] + "And the mouse position is: " + (fieldY - 1));
+          switchBoard[fieldX][fieldY - 1] = switchBoard[fieldX][fieldY - 1] == "x" ? "o" : "x";
+        }
       }
 
       //For the switch below the one clicked.
       if ((fieldY + 1) < 3)
       {
-        switchBoard[fieldX][fieldY + 1] = switchBoard[fieldX][fieldY + 1] != "c" ? == "x" ? "o" : "x";
+        if (switchBoard[fieldX][fieldY + 1] != "c")
+        {
+          console.log("Clicked on: " + switchBoard[fieldX][fieldY + 1] + "And the mouse position is: " + (fieldY + 1));
+          switchBoard[fieldX][fieldY + 1] = switchBoard[fieldX][fieldY + 1] == "x" ? "o" : "x";
+        }
       }
 
       //For the switch to the left of the one clicked.
       if ((fieldX - 1) >= 0)
       {
-        switchBoard[fieldX - 1][fieldY] = switchBoard[fieldX - 1][fieldY] != "c" ? == "x" ? "o" : "x";
+        if (switchBoard[fieldX - 1][fieldY] != "c")
+        {
+          console.log("Clicked on: " + switchBoard[fieldX - 1][fieldY] + "And the mouse position is: " + (fieldX - 1));
+          switchBoard[fieldX - 1][fieldY] = switchBoard[fieldX - 1][fieldY] == "x" ? "o" : "x";
+        }
       }
 
       //For the switch to the right of the one clicked.
-      if (fieldX + 1) < 3)
+      if ((fieldX + 1) < 3)
       {
-        switchBoard[fieldX + 1][fieldY] = switchBoard[fieldX + 1][fieldY] != "c" ? == "x" ? "o" : "x";
+        if (switchBoard[fieldX + 1][fieldY] != "c")
+        {
+          console.log("Clicked on: " + switchBoard[fieldX + 1][fieldY] + "And the mouse position is: " + (fieldX + 1));
+          switchBoard[fieldX + 1][fieldY] = switchBoard[fieldX + 1][fieldY] == "x" ? "o" : "x";
+        }
       }
+
+      //Calls function to draw board again with new values
+      //drawBoard();
     });
 }
+
+/////////////Main/////////////
+
+addEventListenerOnClick();
+
+
+///////TODO:
+/////// DRAWBOARD function
+/////// SCALE PROJECT TO DIFFERENT SIZES
+/////// ADD ANIMATIONS WHEN SWITCHES Clicked
+/////// ADD TEXT CHANGE WHEN EVENTS HAPPEN
+/////// REMOVE DEBUGGERS
