@@ -4,12 +4,25 @@
     <meta charset="utf-8">
     <title>Switch Puzzle Game</title>
 
-    <!-- Links for CSS Stylesheet and jQuery UI Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Links for CSS Stylesheet and jQuery UI Stylesheet, as well as Bootstrap and the font for the game. -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
+
   <body>
-    <canvas id="gameBoard" width="300" height="300"></canvas>
+    <section id="gameBoard">
+      <div class="container-fluid col-lg-6 title-container">
+        <h1>8 SWITCH PUZZLE</h1>
+        <h2>Do you have what it takes...?</h2>
+      </div>
+      <div class="container-fluid col-lg-6 game-container">
+        <canvas id="canvas" width="800" height="600">
+
+        </canvas>
+      </div>
+    </section>
   </body>
 
   <footer>
