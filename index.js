@@ -84,7 +84,7 @@ function drawBoard ()
     {
       userCanClick = false;
 
-      $("h2").text = "You've done did it! Refresh to begin again...";
+      $("h2").text("You've done did it! Refresh to begin again...");
     }
   }
 }
