@@ -68,7 +68,7 @@ function drawBoard ()
         {
           context.fillStyle = "##7C4DFF";
 
-          context.fillRect((x * 200)), (y * 200), 200, 200);
+          context.fillRect((x * 200), (y * 200), 200, 200);
         }
       }
     }
