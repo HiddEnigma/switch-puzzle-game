@@ -34,11 +34,11 @@ function drawBoard ()
     var allSwitchesOn = false;
 
     //For every column
-    for (var x = 0; x < 3; x++)
+    for (var x = 0; x < switchBoard.length; x++)
     {
       console.log("Drawing Column " + x);
       //For every row
-      for (var y = 0; y < 3; y++)
+      for (var y = 0; y < switchBoard[x].length; y++)
       {
         console.log("Drawing row " + y);
         //Start setting up Canvas attributes
