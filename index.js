@@ -6,6 +6,15 @@ switchBoard = [
   ["x", "x", "x"]
 ];
 
+function clear()
+{
+  var canvas = $("#canvas");
+
+  var context = canvas.getContext(2d);
+
+  context.clearRect(0, 0, 600, 600);
+}
+
 function drawBoard ()
 {
   var canvas = $("#canvas");
