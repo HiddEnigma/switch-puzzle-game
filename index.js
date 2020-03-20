@@ -43,7 +43,7 @@ function drawBoard ()
 
         //Sets width of the line and colour of the stroke
         context.lineWidth = 4;
-        context.strokeStyle = #212121;
+        context.strokeStyle = ""#212121";
 
         //Sets dimension of the rectangle. Rect(positionX, positionY, width, height)
         context.rect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
@@ -55,8 +55,8 @@ function drawBoard ()
         if (switchBoard[x][y] == "x")
         {
           //Sets up dimension and colour of activated switch.
-          context.fillStyle = #F5F5F5;
-          context.strokeStyle = #BDBDBD;
+          context.fillStyle = "#F5F5F5";
+          context.strokeStyle = "#BDBDBD";
 
           //fillRect(positionX, positionY, width, height)
           context.fillRect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
@@ -66,7 +66,7 @@ function drawBoard ()
         }
         else if (switchBoard[x][y] == "c")
         {
-          context.fillStyle = ##7C4DFF;
+          context.fillStyle = "##7C4DFF";
 
           context.fillRect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
         }
