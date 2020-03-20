@@ -8,7 +8,7 @@ switchBoard = [
 
 function clear()
 {
-  var canvas = $("#canvas");
+  var canvas = document.getElementById("canvas");
 
   var context = canvas.getContext("2d");
 
@@ -17,7 +17,7 @@ function clear()
 
 function drawBoard ()
 {
-  var canvas = $("#canvas");
+  var canvas = document.getElementById("canvas");
 
   if (canvas.getContext)
   {
