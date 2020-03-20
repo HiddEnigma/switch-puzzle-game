@@ -57,7 +57,7 @@ function drawBoard ()
         context.stroke();
 
         //Checks if the rectangles are activated. If so, draws them activated.
-        if (switchBoard[y][x] == "x")
+        if (switchBoard[y][x] == "o")
         {
           console.log("Drawing switch: " + switchBoard[x][y]);
           console.log("The board currently is: " + switchBoard);
