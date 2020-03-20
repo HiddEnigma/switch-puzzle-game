@@ -19,7 +19,7 @@ function drawBoard ()
 {
   var canvas = document.getElementById("canvas");
 
-  if (canvas.getContext)
+  if (!canvas.getContext)
   {
     alert("This browser does not support CANVAS from HTML5.");
   }
