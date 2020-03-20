@@ -43,7 +43,7 @@ function drawBoard ()
 
         //Sets width of the line and colour of the stroke
         context.lineWidth = 4;
-        context.strokeStyle = ""#212121";
+        context.strokeStyle = "#212121";
 
         //Sets dimension of the rectangle. Rect(positionX, positionY, width, height)
         context.rect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
