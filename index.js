@@ -55,6 +55,12 @@ function drawBoard ()
           allSwitchesOn = false;
 
         }
+        else if (switchBoard[x][y] == "c")
+        {
+          context.fillStyle = ##7C4DFF;
+
+          context.fillRect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
+        }
       }
     }
 
