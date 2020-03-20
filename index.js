@@ -66,7 +66,7 @@ function drawBoard ()
         }
         else if (switchBoard[x][y] == "c")
         {
-          context.fillStyle = "##7C4DFF";
+          context.fillStyle = "#7C4DFF";
 
           context.fillRect((x * 200), (y * 200), 200, 200);
         }
@@ -148,6 +148,7 @@ function addEventListenerOnClick ()
             switchBoard[fieldY][fieldX + 1] = switchBoard[fieldY][fieldX + 1] == "x" ? "o" : "x";
           }
         }
+        console.log(switchBoard);
       }
 
 
