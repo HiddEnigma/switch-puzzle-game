@@ -48,7 +48,7 @@ function drawBoard ()
         context.strokeStyle = "#212121";
 
         //Sets dimension of the rectangle. Rect(positionX, positionY, width, height)
-        context.rect((x * 200) + 100, (y * 200) + 100, 200, 200);
+        context.rect((x * 200) (y * 200), 200, 200);
 
         //Draws the rectangle described above
         context.stroke();
@@ -63,7 +63,7 @@ function drawBoard ()
           context.strokeStyle = "#BDBDBD";
 
           //fillRect(positionX, positionY, width, height)
-          context.fillRect((x * 200) + 100, (y * 200) + 100, 200, 200);
+          context.fillRect((x * 200), (y * 200), 200, 200);
 
           allSwitchesOn = false;
 
@@ -72,7 +72,7 @@ function drawBoard ()
         {
           context.fillStyle = "#7C4DFF";
 
-          context.fillRect((x * 200) + 100, (y * 200) + 100, 200, 200);
+          context.fillRect((x * 200), (y * 200), 200, 200);
         }
       }
     }
