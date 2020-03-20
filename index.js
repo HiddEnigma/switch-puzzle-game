@@ -36,9 +36,11 @@ function drawBoard ()
     //For every column
     for (var x = 0; x < switchBoard.length; x++)
     {
+      console.log("Drawing Column " + x);
       //For every row
-      for (var y = 0; y< switchBoard[x].length; y++)
+      for (var y = 0; y < switchBoard[x].length; y++)
       {
+        console.log("Drawing row " + y);
         //Start setting up Canvas attributes
 
         //Sets width of the line and colour of the stroke
@@ -54,6 +56,8 @@ function drawBoard ()
         //Checks if the rectangles are activated. If so, draws them activated.
         if (switchBoard[x][y] == "x")
         {
+          console.log("Drawing switch: " + switchBoard[x][y]);
+          console.log("The board currently is: " + switchBoard);
           //Sets up dimension and colour of activated switch.
           context.fillStyle = "#F5F5F5";
           context.strokeStyle = "#BDBDBD";
