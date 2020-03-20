@@ -6,6 +6,8 @@ switchBoard = [
   ["x", "x", "x"]
 ];
 
+var userCanClick = true;
+
 function clear()
 {
   var canvas = document.getElementById("canvas");
@@ -31,7 +33,7 @@ function drawBoard ()
     var context = canvas.getContext("2d");
 
     //checks if all switches are on
-    var allSwitchesOn = false;
+    var allSwitchesOn = true;
 
     //For every column
     for (var x = 0; x < switchBoard.length; x++)
@@ -90,6 +92,11 @@ function addEventListenerOnClick ()
 {
   $("#canvas").click(function (event)
     {
+      //Checks if the user can still click. If no, return false.
+      if (!userCanClick)
+      {
+        return false;
+      }
       //This stores the position of the canvas board.
       var canvasRect = this.getBoundingClientRect();
 
