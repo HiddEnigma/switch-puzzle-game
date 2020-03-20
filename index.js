@@ -8,7 +8,63 @@ switchBoard = [
 
 function drawBoard ()
 {
+  var canvas = $("#canvas");
 
+  if (canvas.getContext)
+  {
+    alert("This browser does not support CANVAS from HTML5.");
+  }
+  else
+  {
+    clear();
+
+    //Retrieves canvas context to draw on
+    var context = canvas.getContext(2d);
+
+    //checks if all switches are on
+    var allSwitchesOn = false;
+
+    //For every column
+    for (var x = 0; x < switchBoard.length; x++)
+    {
+      //For every row
+      for (var y = 0; y< switchBoard[x].length; y++)
+      {
+        //Start setting up Canvas attributes
+
+        //Sets width of the line and colour of the stroke
+        context.lineWidth = 4;
+        context.strokeStyle = #212121;
+
+        //Sets dimension of the rectangle. Rect(positionX, positionY, width, height)
+        context.rect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
+
+        //Draws the rectangle described above
+        context.stroke();
+
+        //Checks if the rectangles are activated. If so, draws them activated.
+        if (switchBoard[x][y] == "x")
+        {
+          //Sets up dimension and colour of activated switch.
+          context.fillStyle = #F5F5F5;
+          context.strokeStyle = #BDBDBD;
+
+          //fillRect(positionX, positionY, width, height)
+          context.fillRect(((x * 200) + 20), ((y * 200) + 20), 200, 200);
+
+          allSwitchesOn = false;
+
+        }
+      }
+    }
+
+    if (allSwitchesOn)
+    {
+      userCanClick = false;
+
+      $("h2").text = "You've done did it! Refresh to begin again...";
+    }
+  }
 }
 
 function addEventListenerOnClick ()
@@ -96,7 +152,7 @@ function addEventListenerOnClick ()
 
 
       //Calls function to draw board again with new values
-      //drawBoard();
+      drawBoard();
     });
 }
 
