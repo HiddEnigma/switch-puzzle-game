@@ -174,6 +174,7 @@ function addEventListenerOnClick ()
 /////////////Main/////////////
 
 addEventListenerOnClick();
+drawBoard();
 
 
 ///////TODO:
