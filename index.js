@@ -1,3 +1,4 @@
+var allSwitchesOn;
 var switchBoard = new Array(3);
 
 switchBoard = [
@@ -33,7 +34,7 @@ function drawBoard ()
     var context = canvas.getContext("2d");
 
     //checks if all switches are on
-    var allSwitchesOn = true;
+    allSwitchesOn = true;
 
     //For every column
     for (var x = 0; x < switchBoard.length; x++)
