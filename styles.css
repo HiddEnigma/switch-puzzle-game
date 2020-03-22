@@ -19,6 +19,11 @@ body
   padding: 10px;
   width: 600px;
 }
+
+.victory-flash
+{
+  background-color: #9E9E9E;
+}
 /***************** IDs *****************/
 
 #canvas
