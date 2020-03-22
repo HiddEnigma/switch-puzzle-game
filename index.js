@@ -175,7 +175,7 @@ function drawBoard ()
         }
         else if (switchBoard[y][x] == "c")
         {
-          context.fillStyle = "#7C4DFF";
+          context.fillStyle = "#A073B5";
 
           context.fillRect((x * 200), (y * 200), 200, 200);
         }
