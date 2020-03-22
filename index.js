@@ -166,7 +166,7 @@ function drawBoard ()
         if (switchBoard[y][x] == "x")
         {
           //Sets up dimension and colour of activated switch.
-          context.fillStyle = "#F5F5F5";
+          context.fillStyle = "#FFFEEA";
           context.strokeStyle = "#BDBDBD";
 
           //fillRect(positionX, positionY, width, height)
