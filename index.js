@@ -1,6 +1,8 @@
-var allSwitchesOn;
-var switchBoard = [...Array (3)].map(e => Array (3));
+//Boolean variable to control the game logic
 var userCanClick = true;
+
+//3x3 Matrix with empty values representing the game board
+var switchBoard = [...Array (3)].map(e => Array (3));
 
 
 function addEventListenerOnClick ()
@@ -17,22 +19,16 @@ function addEventListenerOnClick ()
 
       //This stores the mouse position relative to the canvas, as the event has absolute values (Page wide)
       var positionX = event.clientX - canvasRect.left;
-      //console.log("PositionX is: " + positionX + ", which is: " + event.clientX + " - " + canvasRect.left);
       var positionY = event.clientY - canvasRect.top;
-      //console.log("PositionY is: " + positionY + ", which is: " + event.clientY + " - " + canvasRect.top);
 
       //Checks which tiles to flip based on the width divided by the amount of desired tiles. In this case, 800 / 3 = 266.66.
       var fieldX = Math.floor(positionX / 200);
-      //console.log("FieldX is: " + fieldX);
       var fieldY = Math.floor(positionY / 200);
-      //console.log("FieldY is: " + fieldY);
-      //console.log(switchBoard[fieldY][fieldX]);
 
       //Using shortened if statements, checks the click against the board for the assigned values. If X -> O, if O -> X. If C, do nothing.
       //For the switchBoard itself
       if (switchBoard[fieldY][fieldX].localeCompare("c") !== 0)
       {
-        //console.log("Clicked on: " + switchBoard[fieldY][fieldX]);
         switchBoard[fieldY][fieldX] = switchBoard[fieldY][fieldX] == "x" ? "o" : "x";
 
         //For the switch above the one clicked.
@@ -40,7 +36,6 @@ function addEventListenerOnClick ()
         {
           if (switchBoard[fieldY - 1][fieldX].localeCompare("c") !== 0)
           {
-            //console.log("Clicked on: " + switchBoard[fieldY - 1][fieldX] + " And the mouse position is: " + (fieldY - 1));
             switchBoard[fieldY - 1][fieldX] = switchBoard[fieldY - 1][fieldX] == "x" ? "o" : "x";
           }
         }
@@ -50,7 +45,6 @@ function addEventListenerOnClick ()
         {
           if (switchBoard[fieldY + 1][fieldX].localeCompare("c") !== 0)
           {
-            //console.log("Clicked on: " + switchBoard[fieldY + 1][fieldX] + " And the mouse position is: " + (fieldY + 1));
             switchBoard[fieldY + 1][fieldX] = switchBoard[fieldY + 1][fieldX] == "x" ? "o" : "x";
           }
         }
@@ -60,7 +54,6 @@ function addEventListenerOnClick ()
         {
           if (switchBoard[fieldY][fieldX - 1].localeCompare("c") !== 0)
           {
-            //console.log("Clicked on: " + switchBoard[fieldY][fieldX - 1] + " And the mouse position is: " + (fieldX - 1));
             switchBoard[fieldY][fieldX - 1] = switchBoard[fieldY][fieldX - 1] == "x" ? "o" : "x";
           }
         }
@@ -70,11 +63,9 @@ function addEventListenerOnClick ()
         {
           if (switchBoard[fieldY][fieldX + 1].localeCompare("c") !== 0)
           {
-            //console.log("Clicked on: " + switchBoard[fieldY][fieldX + 1] + " And the mouse position is: " + (fieldX + 1));
             switchBoard[fieldY][fieldX + 1] = switchBoard[fieldY][fieldX + 1] == "x" ? "o" : "x";
           }
         }
-        //console.log(switchBoard);
       }
 
 
@@ -98,6 +89,21 @@ function addEventListenerOnClick ()
     });
 }
 
+function addEventListenerOnKeyboard ()
+{
+  $(document).keypress(function ()
+    {
+      if (!userCanClick)
+      {
+        $("body").fadeOut().fadeIn();
+        randomizeBoard();
+        $("h2").text("You may have defeated me once, but will it happen again?");
+        userCanClick = true;
+        drawBoard();
+      }
+    });
+}
+
 function clear()
 {
   var canvas = document.getElementById("canvas");
@@ -105,6 +111,22 @@ function clear()
   var context = canvas.getContext("2d");
 
   context.clearRect(0, 0, 600, 600);
+}
+
+function checkIfVictory()
+{
+  for (var x = 0; x < switchBoard.length; x++)
+  {
+    for (var y = 0; y < switchBoard[x].length; y++)
+    {
+      if (switchBoard[x][y] === "o")
+      {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 function drawBoard ()
@@ -122,17 +144,12 @@ function drawBoard ()
     //Retrieves canvas context to draw on
     var context = canvas.getContext("2d");
 
-    //checks if all switches are on
-    allSwitchesOn = true;
-
     //For every column
     for (var x = 0; x < switchBoard.length; x++)
     {
-      console.log("Drawing Column " + x);
       //For every row
       for (var y = 0; y < switchBoard[x].length; y++)
       {
-        console.log("Drawing row " + y);
         //Start setting up Canvas attributes
 
         //Sets width of the line and colour of the stroke
@@ -146,17 +163,14 @@ function drawBoard ()
         context.stroke();
 
         //Checks if the rectangles are activated. If so, draws them activated.
-        if (switchBoard[y][x] == "o")
+        if (switchBoard[y][x] == "x")
         {
-          console.log("Drawing switch: " + switchBoard[x][y]);
           //Sets up dimension and colour of activated switch.
           context.fillStyle = "#F5F5F5";
           context.strokeStyle = "#BDBDBD";
 
           //fillRect(positionX, positionY, width, height)
           context.fillRect((x * 200), (y * 200), 200, 200);
-
-          allSwitchesOn = false;
 
         }
         else if (switchBoard[y][x] == "c")
@@ -168,11 +182,11 @@ function drawBoard ()
       }
     }
 
-    if (allSwitchesOn)
+    if (checkIfVictory())
     {
       userCanClick = false;
       $("body").fadeOut().fadeIn();
-      $("h2").text("You've done did it! Press any key to restart...");
+      $("h2").text("You've done did it, love! Press any key to restart...");
     }
   }
 }
@@ -189,7 +203,7 @@ function randomizeBoard ()
       }
       else
       {
-        
+
       var random = Math.round(Math.random());
 
       switchBoard[x][y] = random == 0 ? "o" : "x";
@@ -201,15 +215,13 @@ function randomizeBoard ()
 
 /////////////Main/////////////
 
-addEventListenerOnClick();
-randomizeBoard();
-drawBoard();
+addEventListenerOnClick ();
+addEventListenerOnKeyboard ();
+randomizeBoard ();
+drawBoard ();
 
 
 ///////TODO:
-/////// ADD CHANGETILE FUNCTION TO MINIMIZE IF CALLING IN DOCUMENT
-/////// DRAWBOARD function
 /////// SCALE PROJECT TO DIFFERENT SIZES
 /////// ADD ANIMATIONS WHEN SWITCHES Clicked
-/////// ADD TEXT CHANGE WHEN EVENTS HAPPEN
 /////// REMOVE DEBUGGERS
