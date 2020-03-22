@@ -1,92 +1,7 @@
 var allSwitchesOn;
-var switchBoard = new Array(3);
-
-switchBoard = [
-  ["x", "o", "x"],
-  ["o", "c", "o"],
-  ["x", "x", "x"]
-];
-
+var switchBoard = [...Array (3)].map(e => Array (3));
 var userCanClick = true;
 
-function clear()
-{
-  var canvas = document.getElementById("canvas");
-
-  var context = canvas.getContext("2d");
-
-  context.clearRect(0, 0, 600, 600);
-}
-
-function drawBoard ()
-{
-  var canvas = document.getElementById("canvas");
-
-  if (!canvas.getContext)
-  {
-    alert("This browser does not support CANVAS from HTML5.");
-  }
-  else
-  {
-    clear();
-
-    //Retrieves canvas context to draw on
-    var context = canvas.getContext("2d");
-
-    //checks if all switches are on
-    allSwitchesOn = true;
-
-    //For every column
-    for (var x = 0; x < switchBoard.length; x++)
-    {
-      console.log("Drawing Column " + x);
-      //For every row
-      for (var y = 0; y < switchBoard[x].length; y++)
-      {
-        console.log("Drawing row " + y);
-        //Start setting up Canvas attributes
-
-        //Sets width of the line and colour of the stroke
-        context.lineWidth = 4;
-        context.strokeStyle = "#212121";
-
-        //Sets dimension of the rectangle. Rect(positionX, positionY, width, height)
-        context.rect((x * 200), (y * 200), 200, 200);
-
-        //Draws the rectangle described above
-        context.stroke();
-
-        //Checks if the rectangles are activated. If so, draws them activated.
-        if (switchBoard[y][x] == "o")
-        {
-          console.log("Drawing switch: " + switchBoard[x][y]);
-          //Sets up dimension and colour of activated switch.
-          context.fillStyle = "#F5F5F5";
-          context.strokeStyle = "#BDBDBD";
-
-          //fillRect(positionX, positionY, width, height)
-          context.fillRect((x * 200), (y * 200), 200, 200);
-
-          allSwitchesOn = false;
-
-        }
-        else if (switchBoard[y][x] == "c")
-        {
-          context.fillStyle = "#7C4DFF";
-
-          context.fillRect((x * 200), (y * 200), 200, 200);
-        }
-      }
-    }
-
-    if (allSwitchesOn)
-    {
-      userCanClick = false;
-      $("body").toggleClass("victory-flash").toggleClass("victory-flash");
-      $("h2").text("You've done did it! Refresh to begin again...");
-    }
-  }
-}
 
 function addEventListenerOnClick ()
 {
@@ -183,9 +98,111 @@ function addEventListenerOnClick ()
     });
 }
 
+function clear()
+{
+  var canvas = document.getElementById("canvas");
+
+  var context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, 600, 600);
+}
+
+function drawBoard ()
+{
+  var canvas = document.getElementById("canvas");
+
+  if (!canvas.getContext)
+  {
+    alert("This browser does not support CANVAS from HTML5.");
+  }
+  else
+  {
+    clear();
+
+    //Retrieves canvas context to draw on
+    var context = canvas.getContext("2d");
+
+    //checks if all switches are on
+    allSwitchesOn = true;
+
+    //For every column
+    for (var x = 0; x < switchBoard.length; x++)
+    {
+      console.log("Drawing Column " + x);
+      //For every row
+      for (var y = 0; y < switchBoard[x].length; y++)
+      {
+        console.log("Drawing row " + y);
+        //Start setting up Canvas attributes
+
+        //Sets width of the line and colour of the stroke
+        context.lineWidth = 4;
+        context.strokeStyle = "#212121";
+
+        //Sets dimension of the rectangle. Rect(positionX, positionY, width, height)
+        context.rect((x * 200), (y * 200), 200, 200);
+
+        //Draws the rectangle described above
+        context.stroke();
+
+        //Checks if the rectangles are activated. If so, draws them activated.
+        if (switchBoard[y][x] == "o")
+        {
+          console.log("Drawing switch: " + switchBoard[x][y]);
+          //Sets up dimension and colour of activated switch.
+          context.fillStyle = "#F5F5F5";
+          context.strokeStyle = "#BDBDBD";
+
+          //fillRect(positionX, positionY, width, height)
+          context.fillRect((x * 200), (y * 200), 200, 200);
+
+          allSwitchesOn = false;
+
+        }
+        else if (switchBoard[y][x] == "c")
+        {
+          context.fillStyle = "#7C4DFF";
+
+          context.fillRect((x * 200), (y * 200), 200, 200);
+        }
+      }
+    }
+
+    if (allSwitchesOn)
+    {
+      userCanClick = false;
+      $("body").fadeOut().fadeIn();
+      $("h2").text("You've done did it! Press any key to restart...");
+    }
+  }
+}
+
+function randomizeBoard ()
+{
+  for (var x = 0; x < switchBoard.length; x++)
+  {
+    for (var y = 0; y < switchBoard[x].length; y++)
+    {
+      if ((x === 1) && (y === 1))
+      {
+        switchBoard[x][y] = "c";
+      }
+      else
+      {
+        
+      var random = Math.round(Math.random());
+
+      switchBoard[x][y] = random == 0 ? "o" : "x";
+      }
+    }
+  }
+}
+
+
 /////////////Main/////////////
 
 addEventListenerOnClick();
+randomizeBoard();
 drawBoard();
 
 
